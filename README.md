@@ -80,7 +80,7 @@ npx skills add ankitgoyalio/code-skills
 Skills are automatically available once installed. The agent will load the full
 skill instructions only when a relevant task is detected.
 
-Examples:
+### conventional-commit-message examples
 
 ```text
 Commit my changes
@@ -93,6 +93,8 @@ Validate this commit message: feat(api): add user search
 ```text
 Rewrite this commit message using our convention
 ```
+
+### pull-request-message examples
 
 ```text
 Draft a pull request message from my current changes
