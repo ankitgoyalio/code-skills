@@ -40,19 +40,39 @@ one commit.
 - [scripts/validate_commit_header.py](conventional-commit-message/scripts/validate_commit_header.py) - header validator
 - [references/convention.md](conventional-commit-message/references/convention.md) - detailed examples and versioning notes
 
+### pull-request-message
+
+Draft, improve, rewrite, and review pull request or merge request descriptions
+from repository changes, branch diffs, commit lists, provided patches, or
+existing drafts. The skill uses an opinionated template that separates summary,
+motivation, modifications, result, and validation.
+
+**Use when:**
+
+- Drafting a PR or MR description from local changes
+- Improving an existing PR or MR message
+- Turning a diff, branch, or commit list into reviewer-friendly context
+- Reviewing whether a PR/MR template has the right sections
+
+**Covers:**
+
+- Diff and commit inspection guidance
+- Motivation, implementation, result, and validation separation
+- Optional screenshots, risks, rollout, and follow-up sections
+- Copy-ready output guidance
+- Template variants for documentation-only and small changes
+
+**Included files:**
+
+- [SKILL.md](pull-request-message/SKILL.md) - agent instructions and workflow
+- [references/template.md](pull-request-message/references/template.md) - template variants and examples
+
 ## Installation
 
 Install this skill collection with the Agent Skills CLI:
 
 ```bash
 npx skills add ankitgoyalio/code-skills
-```
-
-To install a single skill manually, copy its directory into your agent's skills
-directory:
-
-```bash
-cp -r conventional-commit-message ~/.codex/skills/
 ```
 
 ## Usage
@@ -72,6 +92,14 @@ Validate this commit message: feat(api): add user search
 
 ```text
 Rewrite this commit message using our convention
+```
+
+```text
+Draft a pull request message from my current changes
+```
+
+```text
+Improve this merge request description
 ```
 
 ## Skill Structure
