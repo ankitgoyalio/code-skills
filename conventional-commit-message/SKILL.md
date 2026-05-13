@@ -12,15 +12,15 @@ rewrite, or explain a Git commit message in Conventional Commits style.
 ## Core Workflow
 
 1. Determine the task:
-   - Commit repository changes.
-   - Validate an existing message.
-   - Rewrite a message to match the convention.
+    - Commit repository changes.
+    - Validate an existing message.
+    - Rewrite a message to match the convention.
 2. If committing repository changes, stage all current changes first:
-   - Run `git add -A`.
-   - Inspect the staged result with `git diff --cached --stat` and
-     `git diff --cached`.
-   - If nothing is staged after `git add -A`, report that there are no changes
-     to commit.
+    - Run `git add -A`.
+    - Inspect the staged result with `git diff --cached --stat` and
+      `git diff --cached`.
+    - If nothing is staged after `git add -A`, report that there are no changes
+      to commit.
 3. Derive the commit message from the staged diff unless the user provided a
    full message.
 4. Validate the header before committing. Use
@@ -58,12 +58,12 @@ git commit -m"<header>" -m"<optional body>" -m"<optional footer>"
 
 Allowed types:
 
-- `feat`: add, adjust, or remove an API or UI feature.
-- `fix`: fix an API or UI bug from a previous `feat`.
-- `refactor`: restructure code without changing API or UI behavior.
-- `perf`: improve performance; a special `refactor`.
+- `feat`: API or UI feature added, adjusted, or removed.
+- `fix`: API or UI bug fixed.
+- `refactor`: code rewritten or restructured without API or UI behavior change.
+- `perf`: performance-focused refactor.
 - `style`: code style only, with no behavior change.
-- `test`: add missing tests or correct existing tests.
+- `test`: missing tests added or existing tests corrected.
 - `docs`: documentation-only changes.
 - `build`: build tools, dependencies, project version, or packaging.
 - `ops`: infrastructure, deployment, CI/CD, backups, monitoring, or recovery.

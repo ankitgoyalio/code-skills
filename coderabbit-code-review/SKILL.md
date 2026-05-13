@@ -147,9 +147,9 @@ Review a specific repository directory:
 coderabbit review --plain --no-color --dir "<path>"
 ```
 
-Use `coderabbit review --agent` only when the user explicitly needs
-machine-readable output for automation or fix workflows. Do not use `--agent`
-for a human-facing review report unless the user asks for structured output.
+Use `coderabbit review --agent` only when the user explicitly requests
+machine-readable structured output for automation or fix workflows. Do not use
+`--agent` for human-facing review reports.
 
 The `cr` executable may be used only if `coderabbit` is unavailable and `cr` is
 confirmed to be the local CodeRabbit alias.
@@ -159,9 +159,8 @@ confirmed to be the local CodeRabbit alias.
 - Prefer the user's explicit scope over automatic selection.
 - Use `-t uncommitted` for local work in progress unless the user asks for all
   changes.
-- Use `-t committed` or `--base <branch>` for branch or PR-style reviews.
-- Use `--base-commit <commit>` only when the user provides a commit or the repo
-  context clearly identifies the comparison point.
+- Use `-t committed` or `--base <branch>` for branch or PR-style reviews; use
+  `--base-commit <commit>` only when a commit comparison point is explicit.
 - Add `--dir <path>` only for an explicit directory target, and verify that
   directory is a Git repository first.
 - Keep reruns on the exact same scope unless the user changes the review

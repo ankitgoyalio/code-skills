@@ -12,20 +12,23 @@ request or merge request description.
 ## Core Workflow
 
 1. Determine the source material:
-   - Current local changes.
-   - A branch compared with a base branch.
-   - A provided diff, commit list, issue, or existing PR/MR draft.
-2. If deriving from a repository, inspect the smallest useful change set:
-   - Run `git status --short`.
-   - For unstaged or staged local changes, inspect `git diff --stat`,
-     `git diff`, `git diff --cached --stat`, and `git diff --cached` as needed.
-   - For a branch, identify the base branch and inspect
-     `git diff --stat <base>...HEAD`, `git diff <base>...HEAD`, and
-     `git log --oneline <base>..HEAD` as needed.
-3. Summarize the user-facing problem before describing the implementation.
+    - Current local changes.
+    - A branch compared with a base branch.
+    - A provided diff, commit list, issue, or existing PR/MR draft.
+2. If deriving from a repository, inspect only the smallest useful change set:
+    - Run `git status --short` first.
+    - If using current local changes, inspect `git diff --stat`, `git diff`,
+      `git diff --cached --stat`, and `git diff --cached` as needed.
+    - If using a branch comparison, identify the base branch, then inspect
+      `git diff --stat <base>...HEAD`, `git diff <base>...HEAD`, and
+      `git log --oneline <base>..HEAD` as needed.
+3. Summarize the problem the user encounters that this change addresses before
+   describing the implementation.
 4. Draft the PR/MR message using the standard template unless the repository
    provides its own template.
-5. Include validation only when it was actually run or explicitly provided.
+5. Include validation only when it was actually run or explicitly provided. If
+   no validation information is available, include a placeholder such as
+   `Not run (reason not provided)`.
 6. Call out risks, migrations, rollout notes, screenshots, or follow-up work
    when they are relevant to reviewing or merging the change.
 
