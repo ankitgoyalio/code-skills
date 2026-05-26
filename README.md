@@ -72,6 +72,39 @@ one commit.
 - [scripts/validate_commit_header.py](conventional-commit-message/scripts/validate_commit_header.py) - header validator
 - [references/convention.md](conventional-commit-message/references/convention.md) - detailed examples and versioning notes
 
+### kiss-dry-code-review
+
+Review unmerged branch changes against the repository default branch for KISS
+and DRY issues. The skill focuses on overcomplicated code, unnecessary
+abstraction, duplicated changing knowledge, and repeated implementation details
+that can drift before a branch is merged.
+
+**Use when:**
+
+- Reviewing branch or pull request changes for KISS and DRY concerns
+- Checking unmerged changes against the repository default branch
+- Finding over-engineered code, avoidable indirection, or premature abstraction
+- Finding duplicated business rules, mappings, constants, validations, or test
+  setup
+- Producing a maintainability-focused code review with actionable fixes
+
+**Covers:**
+
+- Git-based default branch discovery or an explicit base branch
+- KISS checks for unnecessary complexity, control flow, public surface area,
+  configuration, and test setup
+- DRY checks for duplicated change-prone knowledge across code, tests, schemas,
+  build logic, and documentation
+- Guardrails against recommending premature abstraction when local duplication
+  is clearer
+- Separate KISS and DRY passes for large or risky diffs
+- Validation and prioritization guidance to reduce speculative findings
+- Severity-based review output with file and line references
+
+**Included files:**
+
+- [SKILL.md](kiss-dry-code-review/SKILL.md) - agent instructions and workflow
+
 ### pull-request-message
 
 Draft, improve, rewrite, and review pull request or merge request descriptions
@@ -138,6 +171,16 @@ Validate this commit message: feat(api): add user search
 
 ```text
 Rewrite this commit message using our convention
+```
+
+### kiss-dry-code-review examples
+
+```text
+Review my unmerged changes for KISS and DRY issues
+```
+
+```text
+Check this branch for over-engineering and duplicated logic before I open a PR
 ```
 
 ### pull-request-message examples
