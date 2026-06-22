@@ -1,14 +1,14 @@
 ---
-name: kiss-dry-code-review
-description: Review unmerged branch changes against the repository default branch for KISS and DRY issues. Use when asked to find overcomplicated code, unnecessary abstraction, duplication, repeated knowledge, or maintainability issues in changes that have not merged yet.
+name: maintainability-code-review
+description: Review unmerged branch changes against the repository default branch for maintainability issues involving simplicity, duplication, and Boolean design. Use when asked to find overcomplicated code, unnecessary abstraction, repeated knowledge, ambiguous Boolean names, opaque Boolean parameters, or other maintainability problems in changes that have not merged yet.
 compatibility: Requires Git when deriving review findings from local repository changes.
 ---
 
-# KISS and DRY Code Review
+# Maintainability Code Review
 
 Use this skill when the user asks to review branch, pull request, or unmerged
-changes for KISS (Keep it simple, stupid) and DRY (Don't repeat yourself)
-principle issues.
+changes for KISS (Keep it simple, stupid), DRY (Don't repeat yourself), and
+Boolean design issues.
 
 ## Principles
 
@@ -22,6 +22,9 @@ principle issues.
 - Balance the two principles. Do not recommend abstraction only because code is
   textually similar; prefer duplication over the wrong abstraction when the
   repeated code has different reasons to change.
+- Boolean design: treat a Boolean as the answer to one clear yes-or-no
+  question. Prefer names and APIs that make the question and the meaning of
+  each value evident at the use site.
 
 ## Core Workflow
 
@@ -72,17 +75,20 @@ only files needed to verify KISS or DRY concerns.
 6. Understand the changed behavior before judging the implementation. For each
    candidate finding, ask how the branch works, how it can fail, and whether the
    simpler or less duplicated alternative preserves the intended behavior.
-7. For large or risky diffs, make separate KISS and DRY passes before
-   synthesizing the final review. Keep notes independent until both passes are
+7. Make a Boolean pass over changed declarations and call sites. Check names,
+   polarity, responsibilities, and whether Boolean arguments hide modes or
+   materially different behavior.
+8. For large or risky diffs, make separate KISS, DRY, and Boolean passes before
+   synthesizing the final review. Keep notes independent until all passes are
    complete so early findings do not bias later checks.
-8. Identify only issues introduced or materially worsened by the unmerged
+9. Identify only issues introduced or materially worsened by the unmerged
    changes. Do not report pre-existing complexity unless the branch depends on
    it or makes it worse.
-9. Validate findings against the actual code before reporting them. Re-read the
+10. Validate findings against the actual code before reporting them. Re-read the
    relevant surrounding code, tests, or call sites to rule out false positives.
-10. Prefer concrete fixes over broad advice. Tie each finding to the changed
+11. Prefer concrete fixes over broad advice. Tie each finding to the changed
     behavior, the duplicated knowledge, or the unnecessary complexity.
-11. Prioritize findings by impact. Report critical and warning issues first;
+12. Prioritize findings by impact. Report critical and warning issues first;
     include low-value info findings only when they are clearly actionable.
 
 ## What To Flag
@@ -109,12 +115,38 @@ DRY issues:
 - Repeated transformations or conditional rules that should share a named
   helper, table, data structure, or existing local abstraction.
 
+Boolean issues:
+
+- Ambiguous names such as `flag`, `done`, `status`, or `check` that do not state
+  the question being answered. Prefer a specific, grammatical question; common
+  prefixes are `is` for state or identity, `has` for possession or presence,
+  `can` for capability, and `should` for intent or a decision.
+- Prefixes that do not match the question, such as `isAccess`, `hasActive`, or
+  `canAdmin`. Apply naming conventions idiomatically for the project language;
+  do not require these exact prefixes when another form is clearer and
+  conventional.
+- Negative names that create confusing negation, such as `isNotEnabled`,
+  `hasNoAccess`, or `!isDisabled`. Prefer positive polarity, except when
+  faithfully representing an external API or protocol; map negative external
+  fields to positive domain concepts at the boundary when practical.
+- A Boolean that combines multiple independent facts under a vague name or is
+  reused for different stages of a workflow. Prefer explicit predicates, early
+  returns, or a result/state type that preserves the distinctions.
+- Positional Boolean arguments whose meaning is unclear at the call site,
+  especially multiple Booleans or a Boolean that selects substantially
+  different behavior. Prefer separate methods, a named enum/mode, or an options
+  object according to the number and nature of the choices.
+
 Do not flag:
 
 - Small local duplication that is clearer than a premature abstraction.
 - Similar code that changes for different business reasons.
 - Verbose code that is required by framework conventions, compatibility, type
   safety, accessibility, security, or observability.
+- Clear Boolean names that follow the language or repository convention even
+  when they do not use `is`, `has`, `can`, or `should`.
+- A single self-evident Boolean argument when replacing it would add more
+  ceremony without improving the call site.
 - Large unchanged files that merely appear in the diff due to formatting or
   generation, unless the branch changed the generated source of truth.
 
@@ -124,14 +156,16 @@ Use a code-review response shape:
 
 1. Findings first, ordered by severity.
 2. Include file and line references whenever possible.
-3. Label each finding as `KISS`, `DRY`, or `KISS/DRY`.
+3. Label each finding as `KISS`, `DRY`, `BOOLEAN`, or a slash-separated
+   combination when it spans concerns.
 4. Explain why the issue matters for future change, readability, testing, or
    defect risk.
 5. Suggest the smallest practical fix.
 6. Distinguish confirmed issues from open questions. Do not present speculative
    concerns as findings.
 7. If the branch appears misguided because of repeated critical or warning
-   KISS/DRY issues, say that directly and explain the simpler direction.
+   KISS, DRY, or Boolean issues, say that directly and explain the simpler
+   direction.
 8. If no issues are found, say that clearly and include the base comparison
    that was reviewed.
 9. Keep summaries brief and secondary to actionable findings.

@@ -72,20 +72,22 @@ one commit.
 - [scripts/validate_commit_header.py](conventional-commit-message/scripts/validate_commit_header.py) - header validator
 - [references/convention.md](conventional-commit-message/references/convention.md) - detailed examples and versioning notes
 
-### kiss-dry-code-review
+### maintainability-code-review
 
-Review unmerged branch changes against the repository default branch for KISS
-and DRY issues. The skill focuses on overcomplicated code, unnecessary
-abstraction, duplicated changing knowledge, and repeated implementation details
-that can drift before a branch is merged.
+Review unmerged branch changes against the repository default branch for KISS,
+DRY, and Boolean design issues. The skill focuses on overcomplicated code,
+unnecessary abstraction, duplicated changing knowledge, ambiguous Boolean
+names, and Boolean APIs that hide intent before a branch is merged.
 
 **Use when:**
 
-- Reviewing branch or pull request changes for KISS and DRY concerns
+- Reviewing branch or pull request changes for KISS, DRY, and Boolean concerns
 - Checking unmerged changes against the repository default branch
 - Finding over-engineered code, avoidable indirection, or premature abstraction
 - Finding duplicated business rules, mappings, constants, validations, or test
   setup
+- Finding unclear Boolean names, negative polarity, multi-purpose state, or
+  opaque Boolean parameters
 - Producing a maintainability-focused code review with actionable fixes
 
 **Covers:**
@@ -98,12 +100,15 @@ that can drift before a branch is merged.
 - Guardrails against recommending premature abstraction when local duplication
   is clearer
 - Separate KISS and DRY passes for large or risky diffs
+- Boolean naming checks for clear questions, grammatical prefixes, and positive
+  polarity
+- Boolean design checks for overloaded state and unclear positional arguments
 - Validation and prioritization guidance to reduce speculative findings
 - Severity-based review output with file and line references
 
 **Included files:**
 
-- [SKILL.md](kiss-dry-code-review/SKILL.md) - agent instructions and workflow
+- [SKILL.md](maintainability-code-review/SKILL.md) - agent instructions and workflow
 
 ### pull-request-message
 
@@ -173,7 +178,7 @@ Validate this commit message: feat(api): add user search
 Rewrite this commit message using our convention
 ```
 
-### kiss-dry-code-review examples
+### maintainability-code-review examples
 
 ```text
 Review my unmerged changes for KISS and DRY issues
@@ -181,6 +186,10 @@ Review my unmerged changes for KISS and DRY issues
 
 ```text
 Check this branch for over-engineering and duplicated logic before I open a PR
+```
+
+```text
+Review the Boolean names and parameters introduced by this branch
 ```
 
 ### pull-request-message examples
