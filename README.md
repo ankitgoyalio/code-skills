@@ -11,38 +11,6 @@ format.
 
 ## Available Skills
 
-### coderabbit-code-review
-
-Run detailed CodeRabbit-powered code reviews for local diffs, branches, pull
-requests, or specific repository directories. The skill checks CLI
-prerequisites, selects an appropriate review scope, captures CodeRabbit's
-plain-text output to a report file, and presents human-readable findings in
-review form.
-
-**Use when:**
-
-- Reviewing local code changes or branch changes
-- Running CodeRabbit on a repository or specific directory
-- Checking code quality, security, performance, or bug risk
-- Summarizing CodeRabbit findings for a pull request
-- Fixing actionable issues reported by CodeRabbit
-
-**Covers:**
-
-- CodeRabbit CLI and authentication checks
-- Working tree, committed, base branch, and base commit review scopes
-- `--dir` reviews for specific Git repositories
-- Plain-text detailed review output by default, with `--agent` reserved for
-  explicit machine-readable workflows
-- Full review capture to a text artifact before summarization to avoid
-  truncated terminal streams
-- Severity-based findings with code-review output guidance
-- Safety notes for secret exposure, authentication tokens, and untrusted output
-
-**Included files:**
-
-- [SKILL.md](coderabbit-code-review/SKILL.md) - agent instructions and workflow
-
 ### conventional-commit-message
 
 Create, validate, rewrite, and explain Git commit messages using an opinionated
@@ -149,20 +117,6 @@ npx skills add ankitgoyalio/code-skills
 
 Skills are automatically available once installed. The agent will load the full
 skill instructions only when a relevant task is detected.
-
-### coderabbit-code-review examples
-
-```text
-Run a detailed CodeRabbit review of my uncommitted changes and summarize the captured report
-```
-
-```text
-Run a detailed CodeRabbit review of this branch compared with main and include the report file path
-```
-
-```text
-Run CodeRabbit against ~/Developer/fsm-ios and give me a human-readable review from the saved report
-```
 
 ### conventional-commit-message examples
 
