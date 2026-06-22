@@ -1,14 +1,9 @@
 ---
 name: maintainability-code-review
-description: Review unmerged branch changes against the repository default branch for maintainability issues involving simplicity, duplication, and Boolean design. Use when asked to find overcomplicated code, unnecessary abstraction, repeated knowledge, ambiguous Boolean names, opaque Boolean parameters, or other maintainability problems in changes that have not merged yet.
-compatibility: Requires Git when deriving review findings from local repository changes.
+description: Apply an opinionated maintainability review to unmerged changes, with separate checks for simplicity, duplicated changing knowledge, and Boolean naming and API design. Use when asked to review a branch or pull request for over-engineering, unnecessary abstraction, drift-prone duplication, ambiguous Boolean names, or opaque Boolean parameters.
 ---
 
 # Maintainability Code Review
-
-Use this skill when the user asks to review branch, pull request, or unmerged
-changes for KISS (Keep it simple, stupid), DRY (Don't repeat yourself), and
-Boolean design issues.
 
 ## Principles
 

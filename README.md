@@ -167,6 +167,23 @@ Each skill directory contains:
 Keep `SKILL.md` focused and move detailed examples, long rule lists, and
 background material into `references/` so agents can use context efficiently.
 
+## Skill Design Standard
+
+Add a skill only when it preserves context learned from solving a real problem
+or removes repetition from an established workflow. Do not create a skill as a
+substitute for first solving and understanding an unfamiliar task.
+
+- Put precise activation cues and the skill's distinctive value in front
+  matter.
+- Keep operational instructions in `SKILL.md`; avoid repeating activation text
+  after the skill has loaded.
+- Add deterministic scripts for fragile or repeatedly reconstructed command
+  sequences.
+- Put edge cases and detailed examples in references that are loaded only when
+  needed.
+- Revise a skill after actual use exposes a missing prerequisite, failure mode,
+  or recurring intervention.
+
 ## Contributing
 
 When adding or changing a skill, update this README in the same change so the

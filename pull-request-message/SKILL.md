@@ -1,13 +1,9 @@
 ---
 name: pull-request-message
-description: Draft clear pull request or merge request descriptions from repository changes, using an opinionated template with motivation, modifications, result, and validation. Also improve existing PR/MR description drafts when asked.
-compatibility: Requires Git when deriving descriptions from local repository changes.
+description: Draft or revise pull request and merge request descriptions using this repository's repeated workflow that separates motivation, modifications, result, and verified validation. Use when asked to turn a diff, branch, commit list, issue, or existing draft into a concise reviewer-ready PR/MR message.
 ---
 
 # Pull Request Message
-
-Use this skill when the user asks to draft, improve, rewrite, or review a pull
-request or merge request description.
 
 ## Core Workflow
 

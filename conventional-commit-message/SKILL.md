@@ -1,13 +1,9 @@
 ---
 name: conventional-commit-message
-description: Stage all Git changes and create commits using an opinionated Conventional Commits format with typed headers, optional scopes, breaking-change markers, body guidance, and issue footers. Also validate or improve existing commit messages when asked.
-compatibility: Optional validator script requires Python 3.
+description: Stage all current Git changes and create exactly one commit using this repository's opinionated Conventional Commits workflow, including deterministic header validation and breaking-change handling. Use when asked to commit changes or to validate, rewrite, or explain a commit message against this convention.
 ---
 
 # Conventional Commit Message
-
-Use this skill when the user asks to commit repository changes, or to validate,
-rewrite, or explain a Git commit message in Conventional Commits style.
 
 ## Core Workflow
 
@@ -23,7 +19,7 @@ rewrite, or explain a Git commit message in Conventional Commits style.
       to commit.
 3. Derive the commit message from the staged diff unless the user provided a
    full message.
-4. Validate the header before committing. Use
+4. Validate the header before committing. Use the Python 3 helper
    `scripts/validate_commit_header.py` when a deterministic check is useful.
 5. Create exactly one commit with the validated message.
 6. Do not run tests, lint, build, or type checks unless the user explicitly

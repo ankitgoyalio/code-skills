@@ -10,6 +10,20 @@ reference material that extend agent behavior for a specific workflow.
 
 Skills follow the [Agent Skills](https://agentskills.io/) format.
 
+## When a Skill Belongs
+
+Add a skill after real use demonstrates at least one of these needs:
+
+- Preserve non-obvious context, prerequisites, failure modes, or an insight
+  learned while solving a difficult task.
+- Make an established, recurring workflow available without repeatedly
+  reconstructing its instructions.
+
+Do not create a skill merely by asking an agent to summarize generic knowledge
+before it has solved or observed the task. First identify the actual context
+gap or repeated intervention. Encode that gap in focused instructions,
+references, or a deterministic helper script.
+
 ## Mandatory README Maintenance
 
 Whenever you make any repository change, check whether `README.md` needs to be
@@ -55,9 +69,11 @@ Start every skill with YAML front matter:
 ---
 name: {skill-name}
 description: {One or two sentences describing when the agent should use this skill.}
-compatibility: {Optional runtime or platform notes.}
 ---
 ```
+
+Keep runtime and platform requirements in the skill body; the current skill
+validator does not accept a `compatibility` front-matter key.
 
 Then include focused operational guidance for the agent:
 
