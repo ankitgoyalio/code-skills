@@ -32,7 +32,7 @@ one commit.
 - Body and footer guidance
 - Issue footer placement
 - Merge, revert, and initial commit special cases
-- Optional deterministic header validation with Python 3
+- Deterministic header validation with the skill-owned Python 3 helper
 
 **Included files:**
 

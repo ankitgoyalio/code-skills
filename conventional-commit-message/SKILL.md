@@ -19,8 +19,10 @@ description: Stage all current Git changes and create exactly one commit using t
       to commit.
 3. Derive the commit message from the staged diff unless the user provided a
    full message.
-4. Validate the header before committing. Use the Python 3 helper
-   `scripts/validate_commit_header.py` when a deterministic check is useful.
+4. Validate the header before committing with the Python 3 helper
+   `./scripts/validate_commit_header.py`. Resolve this path relative to the
+   skill directory that contains this `SKILL.md`; it is owned by this skill, not
+   by the repository being committed.
 5. Create exactly one commit with the validated message.
 6. Do not run tests, lint, build, or type checks unless the user explicitly
    asks for them.
@@ -70,6 +72,20 @@ Special cases:
 - Initial commit: `chore: init`
 - Merge commit: keep Git's default `Merge branch '<branch name>'`
 - Revert commit: keep Git's default `Revert "<reverted commit subject line>"`
+
+## Validation Helper
+
+Run the skill-owned validator from the skill directory, or pass the equivalent
+skill-relative path to Python from another working directory:
+
+```shell
+./scripts/validate_commit_header.py "<header>"
+```
+
+Use this helper for deterministic header validation before creating a commit or
+when validating, rewriting, or explaining a message. If the helper cannot be
+executed in the current environment, fall back to manually checking the rules in
+this skill and report that fallback in the result.
 
 ## Body Rules
 
